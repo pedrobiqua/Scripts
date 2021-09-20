@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Velocidade do personagem")]
+    [Header("Velocidade do personagem")] // Organização do codigo
     public float Speed;
 
     private Animator animacao;
@@ -27,12 +27,15 @@ public class Player : MonoBehaviour
         Move();
     }
 
+    /// <summary>
+    /// Função para a movimentação do jogador
+    /// </summary>
     void Move()
     {//                             Eixo X                        Eixo Y                     Eixo Z                  
         Vector3 move = new Vector3((Input.GetAxis("Horizontal")),(Input.GetAxis("Vertical")),0f);
         transform.position += move * Time.fixedDeltaTime * Speed; //Isso é padrão de movimentação
 
-        //Controle de Animações
+        //Controle de Animações e direções x, y e z do personagem
         if (Input.GetAxis("Horizontal")> 0f)
         {
             animacao.SetBool("Andar", true);
@@ -40,7 +43,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetAxis("Horizontal") < 0f)
         {
-            Debug.Log("Andar Direita");
+            //Debug.Log("Andar Direita"); Apenas para debug
             animacao.SetBool("Andar", true);
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
